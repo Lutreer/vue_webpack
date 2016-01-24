@@ -10,7 +10,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
+    extensions: ['', '.js', '.vue','.css'],
     alias: {
       'src': path.resolve(__dirname, '../src')
     }
@@ -40,6 +40,10 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'vue-style!css'
       }
     ]
   },
@@ -50,5 +54,9 @@ module.exports = {
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
+  },
+  externals: {
+    Zepto:'window.Zepto',
+    $:'window.Zepto',
   }
 }

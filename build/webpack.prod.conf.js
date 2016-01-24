@@ -31,6 +31,9 @@ config.vue.loaders = {
 }
 
 config.plugins = (config.plugins || []).concat([
+  //提取公共代码
+  //new webpack.optimize.CommonsChunkPlugin('common.js'),
+  
   // http://vuejs.github.io/vue-loader/workflow/production.html
   new webpack.DefinePlugin({
     'process.env': {
@@ -53,5 +56,35 @@ config.plugins = (config.plugins || []).concat([
     template: 'src/index.html'
   })
 ])
+
+//加载器
+config.module.loaders = [
+  {
+    test: /\.vue$/,
+    loader: 'vue'
+  },
+  {
+    test: /\.js$/,
+    loader: 'babel!eslint',
+    exclude: /node_modules/
+  },
+  {
+    test: /\.json$/,
+    loader: 'json'
+  },
+  {
+    test: /\.(png|jpg|gif|svg)$/,
+    loader: 'url',
+    query: {
+      limit: 10000,
+      name: '[name].[ext]?[hash]'
+    }
+  },
+  {
+    test: /\.css$/,
+    //样式文件单独提取出来
+    loader: ExtractTextPlugin.extract("vue-style-loader", "css-loader")
+  }
+]
 
 module.exports = config

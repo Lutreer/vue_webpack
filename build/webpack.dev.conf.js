@@ -6,7 +6,7 @@ config.devtool = 'eval-source-map'
 
 config.devServer = {
   // allow access over local network
-  host: '0.0.0.0',
+  host: 'localhost',
   // enable HTML5 history routing
   historyApiFallback: true,
   // suppress useless text
