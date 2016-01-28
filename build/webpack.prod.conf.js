@@ -22,7 +22,7 @@ function generateExtractLoaders (loaders) {
 }
 
 config.vue.loaders = {
-  js: 'babel!eslint',
+  js: 'babel',
   // http://vuejs.github.io/vue-loader/configurations/extract-css.html
   css: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css'])),
   less: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'less'])),
@@ -57,34 +57,5 @@ config.plugins = (config.plugins || []).concat([
   })
 ])
 
-//加载器
-config.module.loaders = [
-  {
-    test: /\.vue$/,
-    loader: 'vue'
-  },
-  {
-    test: /\.js$/,
-    loader: 'babel!eslint',
-    exclude: /node_modules/
-  },
-  {
-    test: /\.json$/,
-    loader: 'json'
-  },
-  {
-    test: /\.(png|jpg|gif|svg)$/,
-    loader: 'url',
-    query: {
-      limit: 10000,
-      name: '[name].[ext]?[hash]'
-    }
-  },
-  {
-    test: /\.css$/,
-    //样式文件单独提取出来
-    loader: ExtractTextPlugin.extract("vue-style-loader", "css-loader")
-  }
-]
 
 module.exports = config
