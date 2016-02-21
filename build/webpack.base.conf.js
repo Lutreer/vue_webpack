@@ -12,9 +12,8 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.vue','.css'],
     alias: {
-      'src': path.resolve(__dirname, '../src'),
-       "zepto": "../src/assets/js/zepto.min.js",  // var $ = require('zepto')
-       "sui": "../src/assets/js/sui.min.js"  //require('sui')
+      'src': path.resolve(__dirname, '../src')
+       //"$": "../src/assets/js/zepto.min.js"// var $ = require('zepto')
     }
   },
   resolveLoader: {
@@ -53,10 +52,13 @@ module.exports = {
         //样式文件单独提取出来
         loader: ExtractTextPlugin.extract("vue-style-loader", "css-loader")
       }*/
-      { test: /zepto(\.min)?\.js$/, loader: "exports?Zepto;" },
+      //{ test: /zepto(\.min)?\.js$/, loader: "exports?Zepto;" },
       //{ test: /sui(\.min)?\.js$/, loader: "exports?sui;" },
-    ],
-    noParse: ["../src/assets/js/sui.min.js","../src/assets/js/zepto.min.js"]
+    ]
+  },
+  externals:{
+      'Zepto':'window.Zepto',
+      '$':'window.Zepto'
   },
   vue: {
     loaders: {
