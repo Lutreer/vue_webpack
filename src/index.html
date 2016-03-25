@@ -20,8 +20,5 @@
   <body>
     <app></app>{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>{% } %}
-    <script>$.config = {
-    autoInit: true
-  }</script>
   </body>
 </html>
